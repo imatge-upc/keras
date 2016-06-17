@@ -267,8 +267,9 @@ class Adadelta(Optimizer):
         self.weights = accumulators + delta_accumulators
         self.updates = []
 
+        print(lr_mults)
+        print(params)
         for p, g, a, d_a, lr_mul in zip(params, grads, accumulators, delta_accumulators, lr_mults):
-            print(lr_mults)
             # update accumulator
             new_a = self.rho * a + (1. - self.rho) * K.square(g)
             self.updates.append((a, new_a))
